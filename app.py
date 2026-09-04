@@ -2,15 +2,14 @@ import streamlit as st
 import hashlib
 
 # ==========================================
-# ⚙️ PENGATURAN DEFAULT NAMA BRAND & EMAIL
+# ⚙️ PENGATURAN NAMA & IDENTITAS BRAND
 # ==========================================
 DEFAULT_APP_NAME = "PINTAR OS Cloud Studio"
-DEFAULT_TAGLINE  = "Enterprise-Grade Video Processing & YouTube Content Automation Suite"
 DEFAULT_EMAIL    = "contact.pintarmedia@gmail.com"
 # ==========================================
 
 st.set_page_config(
-    page_title=DEFAULT_APP_NAME,
+    page_title="PINTAR OS - Automation Portal",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -21,318 +20,308 @@ query_params = st.query_params
 domain_brand = query_params.get("brand", DEFAULT_APP_NAME)
 brand_name = domain_brand.replace("-", " ").replace("_", " ").title()
 
-# Palet warna futuristik
-PALETTES = [
-    {"primary": "#6366f1", "accent": "#818cf8", "glow": "rgba(99, 102, 241, 0.35)", "grad": "linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%)"},
-    {"primary": "#06b6d4", "accent": "#22d3ee", "glow": "rgba(6, 182, 212, 0.35)", "grad": "linear-gradient(135deg, #083344 0%, #0f172a 100%)"},
-    {"primary": "#10b981", "accent": "#34d399", "glow": "rgba(16, 185, 129, 0.35)", "grad": "linear-gradient(135deg, #064e3b 0%, #0f172a 100%)"},
-    {"primary": "#8b5cf6", "accent": "#c084fc", "glow": "rgba(139, 92, 246, 0.35)", "grad": "linear-gradient(135deg, #2e1065 0%, #0f172a 100%)"},
-]
-color_idx = int(hashlib.md5(brand_name.encode()).hexdigest(), 16) % len(PALETTES)
-theme = PALETTES[color_idx]
-
-# Custom CSS High-End
-st.markdown(f"""
+# Custom CSS — MURNI DESIGN SYSTEM PINTAR OS
+st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
-    html, body, [class*="css"] {{
-        font-family: 'Plus Jakarta Sans', sans-serif;
-    }}
+    html, body, [class*="css"], .stApp {
+        background-color: #090d16 !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        color: #c8cdd5 !important;
+    }
     
-    .navbar {{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px 30px;
-        background: rgba(15, 23, 42, 0.75);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        margin-bottom: 30px;
-    }}
-    .nav-brand {{
-        font-size: 20px;
+    /* Header Title */
+    .pintar-header {
+        margin-bottom: 20px;
+    }
+    .pintar-title {
+        font-size: 26px;
         font-weight: 800;
         color: #ffffff;
-        letter-spacing: -0.5px;
+        letter-spacing: 0.5px;
         display: flex;
         align-items: center;
         gap: 10px;
-    }}
-    .nav-badge {{
-        background: rgba(16, 185, 129, 0.12);
-        color: #10b981;
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 11px;
+    }
+    .pintar-subtitle {
+        font-size: 13px;
+        color: #7e89ac;
+        margin-top: 4px;
+    }
+    
+    /* Status Panel Bar (Mirip persis PINTAR OS) */
+    .status-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #0e1630;
+        border: 1px solid rgba(129, 140, 248, 0.12);
+        border-radius: 12px;
+        padding: 16px 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .status-group {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+    }
+    .status-item {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+    .status-label {
+        font-size: 10px;
         font-weight: 700;
-    }}
-    .hero-container {{
-        background: {theme['grad']};
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 24px;
-        padding: 60px 40px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 20px 50px {theme['glow']};
-        margin-bottom: 40px;
-    }}
-    .hero-tag {{
-        display: inline-flex;
+        text-transform: uppercase;
+        color: #7e89ac;
+        letter-spacing: 0.8px;
+    }
+    .status-val {
+        font-size: 13px;
+        font-weight: 700;
+        color: #c8cdd5;
+        display: flex;
         align-items: center;
         gap: 6px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: {theme['accent']};
-        padding: 6px 16px;
-        border-radius: 30px;
-        font-size: 12px;
+    }
+    
+    .badge-live-connected {
+        background: rgba(16, 185, 129, 0.12);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        padding: 3px 10px;
+        border-radius: 6px;
+        font-size: 11px;
         font-weight: 700;
+    }
+    
+    /* Card Container */
+    .pintar-card {
+        background: #0e1630;
+        border: 1px solid rgba(129, 140, 248, 0.12);
+        border-radius: 14px;
+        padding: 24px;
         margin-bottom: 20px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }}
-    .hero-h1 {{
-        font-size: 46px;
-        font-weight: 800;
-        color: #ffffff;
-        letter-spacing: -1px;
-        line-height: 1.15;
-        margin-bottom: 16px;
-    }}
-    .hero-desc {{
-        font-size: 17px;
-        color: #94a3b8;
-        max-width: 720px;
-        margin: 0 auto 30px;
+    }
+    .pintar-card h3 {
+        color: #818cf8;
+        font-size: 16px;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+    .pintar-card p, .pintar-card li {
+        font-size: 13px;
+        color: #9ca3af;
         line-height: 1.6;
-    }}
-    .feature-card {{
-        background: rgba(30, 41, 59, 0.6);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 18px;
-        padding: 28px 24px;
-        height: 100%;
-        transition: all 0.3s ease;
-    }}
-    .feature-card:hover {{
-        border-color: {theme['accent']};
-        transform: translateY(-4px);
-        box-shadow: 0 12px 30px {theme['glow']};
-    }}
-    .feature-icon {{
-        font-size: 32px;
-        margin-bottom: 14px;
-    }}
-    .feature-title {{
+    }
+    
+    /* Policy Box */
+    .policy-container {
+        background: #0b1021;
+        border: 1px solid rgba(129, 140, 248, 0.15);
+        border-radius: 12px;
+        padding: 28px;
+        margin-top: 10px;
+    }
+    .policy-container h2 {
+        color: #ffffff;
         font-size: 18px;
         font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 8px;
-    }}
-    .feature-text {{
+        margin-top: 0;
+    }
+    .policy-container h3 {
+        color: #818cf8;
         font-size: 14px;
-        color: #94a3b8;
-        line-height: 1.5;
-    }}
-    .stat-box {{
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 14px;
-        padding: 20px;
-        text-align: center;
-    }}
-    .stat-number {{
-        font-size: 32px;
-        font-weight: 800;
-        color: {theme['accent']};
-    }}
-    .stat-label {{
-        font-size: 12px;
-        color: #64748b;
-        font-weight: 600;
-        text-transform: uppercase;
-        margin-top: 4px;
-    }}
-    .policy-box {{
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 30px;
+        font-weight: 700;
+        margin-top: 18px;
+        margin-bottom: 8px;
+    }
+    .policy-container p, .policy-container li {
+        font-size: 13px;
         color: #cbd5e1;
         line-height: 1.7;
-    }}
+    }
+    
+    /* Tab Navigation Style */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background-color: transparent;
+    }
+    .stTabs [data-baseweb="tab"] {
+        background-color: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        color: #7e89ac;
+        padding: 8px 16px;
+        font-weight: 700;
+        font-size: 12px;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #6c72ff !important;
+        color: #ffffff !important;
+        border-color: #6c72ff !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# 1. Navbar Enterprise
+# 1. Header Utama PINTAR OS
 st.markdown(f"""
-<div class="navbar">
-    <div class="nav-brand">
-        <span>⚡</span> {brand_name}
+<div class="pintar-header">
+    <div class="pintar-title">
+        <span>⚡</span> {brand_name.upper()}
     </div>
-    <div style="display: flex; gap: 12px; align-items: center;">
-        <span class="nav-badge">🟢 Cloud Network Active</span>
-        <span style="color: #64748b; font-size: 12px; font-weight: 600;">v2.5 Enterprise</span>
+    <div class="pintar-subtitle">
+        Sistem otomasi manajemen konten video, integrasi cloud scheduler, dan sinkronisasi resmi Google YouTube Data API v3.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# 2. Hero Section
-st.markdown(f"""
-<div class="hero-container">
-    <div class="hero-tag">🛡️ Official YouTube Data API v3 Certified Partner Architecture</div>
-    <div class="hero-h1">{brand_name}</div>
-    <div class="hero-desc">
-        Next-generation cloud infrastructure built for high-throughput video pipeline orchestration, automated scheduling, and secure OAuth 2.0 creator authentication.
+# 2. Status Panel (Mirip Toolbar PINTAR OS)
+st.markdown("""
+<div class="status-panel">
+    <div class="status-group">
+        <div class="status-item">
+            <span class="status-label">WORKER CLUSTER</span>
+            <span class="status-val" style="color:#818cf8;">PINTAR-CLOUD (NODE_1)</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">OAUTH 2.0 PROTOCOL</span>
+            <span class="status-val"><span class="badge-live-connected">● AKTIF & TERENKRIPSI</span></span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">API GATEWAY</span>
+            <span class="status-val" style="color:#10b981;">Google YouTube v3 (Verified Architecture)</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">SYSTEM STATUS</span>
+            <span class="status-val" style="color:#6c72ff;">Ready / Operational</span>
+        </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# 3. Live Platform Metrics
-c1, c2, c3, c4 = st.columns(4)
-with c1:
-    st.markdown('<div class="stat-box"><div class="stat-number">99.99%</div><div class="stat-label">API SLA Uptime</div></div>', unsafe_allow_html=True)
-with c2:
-    st.markdown('<div class="stat-box"><div class="stat-number">256-bit</div><div class="stat-label">OAuth Encryption</div></div>', unsafe_allow_html=True)
-with c3:
-    st.markdown('<div class="stat-box"><div class="stat-number">0-Quota</div><div class="stat-label">Data Storage Leaks</div></div>', unsafe_allow_html=True)
-with c4:
-    st.markdown('<div class="stat-box"><div class="stat-number">Real-Time</div><div class="stat-label">Sync Pipeline</div></div>', unsafe_allow_html=True)
-
-st.write("")
-st.write("")
-
-# 4. Enterprise Tabs
-tab_features, tab_privacy, tab_terms, tab_compliance, tab_contact = st.tabs([
-    "🚀 Architecture & Features",
-    "🔒 Privacy Policy",
-    "📄 Terms of Service",
-    "🛡️ Google Limited Use Compliance",
-    "📬 Contact & Support"
+# 3. Tab Navigasi PINTAR OS
+tab_app, tab_privacy, tab_terms, tab_compliance = st.tabs([
+    "🚀 Arsitektur Sistem",
+    "🔒 Kebijakan Privasi (Privacy Policy)",
+    "📄 Syarat Layanan (Terms of Service)",
+    "🛡️ Kepatuhan YouTube API"
 ])
 
-with tab_features:
-    f1, f2, f3 = st.columns(3)
-    with f1:
+with tab_app:
+    c1, c2, c3 = st.columns(3)
+    with c1:
         st.markdown(f"""
-        <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <div class="feature-title">High-Velocity Engine</div>
-            <div class="feature-text">
-                Multi-threaded video stream processing with hardware-accelerated encoding, visual hash sanitization, and seamless resumable chunk upload protocols.
-            </div>
+        <div class="pintar-card">
+            <h3>⚡ High-Throughput Engine</h3>
+            <p>
+                Didukung oleh pipeline render video otomatis, pemindaian folder multi-antrean, serta sistem upload berbasis chunk aman berkecepatan tinggi.
+            </p>
         </div>
         """, unsafe_allow_html=True)
-    with f2:
+    with c2:
         st.markdown(f"""
-        <div class="feature-card">
-            <div class="feature-icon">🔐</div>
-            <div class="feature-title">OAuth 2.0 Zero-Knowledge</div>
-            <div class="feature-text">
-                Strict adherence to Google Cloud identity protocols. Tokens are scoped strictly for publication authorization, with zero plain-text credential persistence.
-            </div>
+        <div class="pintar-card">
+            <h3>🔐 Keamanan Zero-Credential</h3>
+            <p>
+                Menggunakan standar resmi Google OAuth 2.0. Sistem tidak menyimpan password akun Google secara plain-text, serta akses dapat dicabut kapan saja.
+            </p>
         </div>
         """, unsafe_allow_html=True)
-    with f3:
+    with c3:
         st.markdown(f"""
-        <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <div class="feature-title">Realtime Queue Telemetry</div>
-            <div class="feature-text">
-                Comprehensive audit metrics, subscriber tracking, automated quarantine detectors, and granular rate-limit enforcement buffers.
-            </div>
+        <div class="pintar-card">
+            <h3>📊 Audit & Monitoring Realtime</h3>
+            <p>
+                Telemetri kuota API Google harian terproteksi, monitoring status kesehatan channel, dan pencegahan error duplikasi secara cerdas.
+            </p>
         </div>
         """, unsafe_allow_html=True)
 
 with tab_privacy:
     st.markdown(f"""
-    <div class="policy-box">
-        <h2 style="color:#ffffff; margin-top:0;">🔒 Privacy Policy</h2>
-        <p style="color:#94a3b8; font-size:13px;">Effective Date: January 1, 2026 | Last Verified: Current Release</p>
+    <div class="policy-container">
+        <h2>🔒 Kebijakan Privasi ({brand_name})</h2>
+        <p style="color:#7e89ac; font-size:12px;">Terakhir diperbarui: 2026 | Dokumen Kepatuhan Pengembang Resmi</p>
         <hr style="border-color:rgba(255,255,255,0.08);">
-        
-        <h3>1. Scope of Privacy Policy</h3>
-        <p>This Privacy Policy applies to the <strong>{brand_name}</strong> platform ("the Service", "we", "us"). We provide enterprise-grade content management tools designed to assist authorized YouTube content creators in scheduling, staging, and publishing video assets.</p>
 
-        <h3>2. Information We Process</h3>
+        <h3>1. Pendahuluan</h3>
+        <p>
+            <strong>{brand_name}</strong> ("kami") menghormati privasi pengguna dan berkomitmen untuk melindungi data akun yang terhubung ke platform otomasi kami. Dokumen ini menjelaskan bagaimana data diakses, digunakan, dan dilindungi.
+        </p>
+
+        <h3>2. Data yang Diakses & Digunakan</h3>
+        <p>
+            Aplikasi kami menggunakan protokol resmi Google OAuth 2.0 untuk meminta izin akses terbatas (scope: <code>https://www.googleapis.com/auth/youtube.upload</code> dan <code>youtube.readonly</code>). 
+        </p>
         <ul>
-            <li><strong>Authentication Data:</strong> We utilize Google OAuth 2.0 authorization tokens. We request only the explicit scope required to upload video assets (<code>https://www.googleapis.com/auth/youtube.upload</code>) and inspect metadata for account validation.</li>
-            <li><strong>Video & Media Content:</strong> Video binaries and metadata (titles, descriptions, tags) provided directly by the user solely for execution of publishing tasks.</li>
-            <li><strong>Non-Collected Data:</strong> We <strong>DO NOT</strong> collect, inspect, or store private personal user information, financial credentials, or unrelated account data.</li>
+            <li><strong>Penggunaan Izin:</strong> Hanya digunakan untuk memvalidasi channel milik pengguna dan mengunggah video yang dijadwalkan secara sah oleh pemilik akun.</li>
+            <li><strong>Data yang TIDAK Diambil:</strong> Kami <strong>TIDAK PERNAH</strong> mengambil, menyimpan, atau memperjualbelikan password pribadi, data finansial, atau data kontak pengguna kepada pihak ketiga mana pun.</li>
         </ul>
 
-        <h3>3. Data Retention & Third-Party Sharing</h3>
-        <p><strong>{brand_name}</strong> maintains a strict zero-sharing policy. User data is never sold, leased, or transferred to third-party advertisers, data brokers, or external analytics firms. All operational logs are purged periodically in compliance with Google Cloud best practices.</p>
+        <h3>3. Penyimpanan & Keamanan Data</h3>
+        <p>
+            Seluruh token otentikasi disimpan dengan enkripsi standar industri (AES-256) dan hanya digunakan selama proses eksekusi tugas pengunggahan video berlangsung.
+        </p>
 
-        <h3>4. Revocation and Data Erasure</h3>
-        <p>Users maintain complete autonomy over their authorizations. You can immediately revoke <strong>{brand_name}</strong>'s access to your Google Account at any time via the official <a href="https://myaccount.google.com/permissions" target="_blank" style="color:{theme['accent']}; font-weight:700;">Google Security Dashboard</a>.</p>
+        <h3>4. Pencabutan Izin (Revoke Access)</h3>
+        <p>
+            Pengguna memiliki kontrol penuh dan dapat mencabut izin akses aplikasi ini kapan saja melalui <a href="https://myaccount.google.com/permissions" target="_blank" style="color:#818cf8; font-weight:700;">Pengaturan Keamanan Akun Google</a>.
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
 with tab_terms:
     st.markdown(f"""
-    <div class="policy-box">
-        <h2 style="color:#ffffff; margin-top:0;">📄 Terms of Service</h2>
-        <p style="color:#94a3b8; font-size:13px;">Standard Commercial License Agreement</p>
+    <div class="policy-container">
+        <h2>📄 Syarat & Ketentuan Layanan</h2>
+        <p style="color:#7e89ac; font-size:12px;">Ketentuan Penggunaan Platform Otomasi</p>
         <hr style="border-color:rgba(255,255,255,0.08);">
 
-        <h3>1. Agreement to Terms</h3>
-        <p>By interfacing with the <strong>{brand_name}</strong> system, you certify that you are the lawful owner or authorized operator of the connected YouTube channels.</p>
+        <h3>1. Persetujuan Pengguna</h3>
+        <p>
+            Dengan menggunakan layanan <strong>{brand_name}</strong>, Anda menyatakan bahwa Anda adalah pemilik sah atau pihak yang memiliki wewenang penuh atas channel YouTube yang dikaitkan.
+        </p>
 
-        <h3>2. Acceptable Use Policy</h3>
-        <p>You agree to adhere strictly to YouTube's Community Guidelines and Terms of Service. The service may not be utilized to distribute malicious code, copyright-infringing works, or content that violates global intellectual property standards.</p>
-
-        <h3>3. Limitation of Liability</h3>
-        <p>The platform is provided on an "as-is" basis with high-availability architecture. <strong>{brand_name}</strong> is not liable for upstream service interruptions originating from third-party API providers.</p>
+        <h3>2. Kepatuhan Pedoman Komunitas</h3>
+        <p>
+            Pengguna wajib mematuhi seluruh Pedoman Komunitas YouTube serta hukum hak cipta yang berlaku. Dilarang menggunakan sistem ini untuk menyebarkan konten berbahaya atau melanggar hak cipta.
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
 with tab_compliance:
     st.markdown(f"""
-    <div class="policy-box">
-        <h2 style="color:#ffffff; margin-top:0;">🛡️ Google API Services & YouTube Limited Use Disclosure</h2>
+    <div class="policy-container">
+        <h2>🛡️ Pernyataan Kepatuhan Google API & YouTube</h2>
         <hr style="border-color:rgba(255,255,255,0.08);">
-        
-        <p><strong>{brand_name}</strong> utilizes official YouTube API Services. By engaging with our services, all users are additionally bound by:</p>
+
+        <p>
+            Aplikasi <strong>{brand_name}</strong> menggunakan Layanan YouTube API. Dengan menggunakan platform ini, pengguna juga terikat oleh:
+        </p>
         <ul>
-            <li><a href="https://www.youtube.com/t/terms" target="_blank" style="color:{theme['accent']};">YouTube Terms of Service</a></li>
-            <li><a href="https://policies.google.com/privacy" target="_blank" style="color:{theme['accent']};">Google Privacy Policy</a></li>
+            <li><a href="https://www.youtube.com/t/terms" target="_blank" style="color:#818cf8;">Persyaratan Layanan YouTube (YouTube Terms of Service)</a></li>
+            <li><a href="https://policies.google.com/privacy" target="_blank" style="color:#818cf8;">Kebijakan Privasi Google (Google Privacy Policy)</a></li>
         </ul>
 
-        <div style="background:rgba(99, 102, 241, 0.1); border:1px solid rgba(99, 102, 241, 0.3); padding:18px; border-radius:12px; margin-top:20px;">
-            <strong style="color:#ffffff;">📜 Limited Use Requirements Notice:</strong><br>
-            <span style="font-size:13px; color:#cbd5e1;">
-            <strong>{brand_name}</strong>'s use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" style="color:#818cf8; font-weight:700;">Google API Services User Data Policy</a>, including the Limited Use requirements.
+        <div style="background:rgba(108, 114, 255, 0.08); border:1px solid rgba(108, 114, 255, 0.25); padding:16px; border-radius:10px; margin-top:16px;">
+            <strong style="color:#ffffff;">Pemberitahuan Persyaratan Penggunaan Terbatas (Limited Use):</strong><br>
+            <span style="font-size:12px; color:#cbd5e1;">
+            Penggunaan dan transfer informasi yang diterima <strong>{brand_name}</strong> dari Google API ke aplikasi lain akan mematuhi <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" style="color:#818cf8; font-weight:700;">Kebijakan Data Pengguna Layanan Google API</a>, termasuk persyaratan Penggunaan Terbatas.
             </span>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-with tab_contact:
-    st.markdown(f"""
-    <div class="policy-box" style="text-align:center;">
-        <h2 style="color:#ffffff; margin-top:0;">📬 Enterprise Developer Contact</h2>
-        <p style="color:#94a3b8;">Have compliance, security, or integration questions? Contact our engineering team directly:</p>
-        <div style="display:inline-block; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); padding:14px 28px; border-radius:12px; margin:20px 0; font-size:16px; font-weight:700; color:{theme['accent']};">
-            📧 {DEFAULT_EMAIL}
-        </div>
-        <p style="color:#64748b; font-size:13px;">Response SLA: Within 24 Business Hours</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# 5. Professional Footer
+# Footer PINTAR OS
 st.markdown("---")
 st.markdown(f"""
-<div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 10px; color: #64748b; font-size: 12px;">
-    <div>© 2026 <strong>{brand_name}</strong>. All Systems Encrypted & Compliant.</div>
-    <div style="display: flex; gap: 16px;">
-        <span>🔒 ISO/IEC 27001 Standard Aligned</span>
-        <span>🛡️ Google Cloud Verified Architecture</span>
-    </div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; color: #7e89ac; font-size: 11px;">
+    <div>© 2026 <strong>{brand_name}</strong>. Powered by PINTAR OS Architecture.</div>
+    <div>Kontak Pengembang: <span style="color:#818cf8; font-weight:700;">{DEFAULT_EMAIL}</span></div>
 </div>
 """, unsafe_allow_html=True)
