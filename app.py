@@ -53,29 +53,24 @@ html_code = f"""
             margin: 0 auto;
         }}
         
-        /* Header */
+        /* Header Logo Besar */
         .header {{
             margin-bottom: 24px;
-        }}
-        .logo-img {{
-            height: 42px;
-            object-fit: contain;
-            display: block;
-            margin-bottom: 6px;
-        }}
-        .subtitle {{
-            font-size: 13px;
-            color: #7e89ac;
-            margin-top: 4px;
-            line-height: 1.5;
-        }}
-        
-        /* Status Bar PINTAR OS High-Tech */
-        .status-panel {{
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            gap: 40px;
+        }}
+        .logo-img {{
+            height: 64px;
+            object-fit: contain;
+            display: block;
+        }}
+        
+        /* Status Bar PINTAR OS High-Tech 3 Kolom Rapi */
+        .status-panel {{
+            display: grid;
+            grid-template-columns: 1fr 1.4fr 1.3fr;
+            gap: 20px;
+            align-items: center;
             background: #0e1630;
             border: 1px solid rgba(129, 140, 248, 0.15);
             border-radius: 12px;
@@ -103,7 +98,7 @@ html_code = f"""
         .status-item {{
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
         }}
         .status-label {{
             font-size: 10px;
@@ -150,6 +145,7 @@ html_code = f"""
             font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
             letter-spacing: 0.3px;
+            width: fit-content;
         }}
         
         /* Logo Certified Badge */
@@ -159,12 +155,13 @@ html_code = f"""
             gap: 10px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 5px 16px;
+            padding: 5px 14px;
             border-radius: 8px;
             font-size: 12px;
             font-weight: 700;
             color: #ffffff;
             transition: all 0.2s ease;
+            width: fit-content;
         }}
         .partner-badge:hover {{
             background: rgba(255, 255, 255, 0.08);
@@ -174,6 +171,20 @@ html_code = f"""
             display: flex;
             align-items: center;
             gap: 8px;
+        }}
+        
+        .security-badge {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(108, 114, 255, 0.08);
+            border: 1px solid rgba(108, 114, 255, 0.25);
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #818cf8;
+            width: fit-content;
         }}
         
         /* Tab Navigation Bar */
@@ -326,21 +337,24 @@ html_code = f"""
             flex-wrap: wrap;
             gap: 12px;
         }}
+        
+        @media (max-width: 900px) {{
+            .status-panel {{
+                grid-template-columns: 1fr;
+            }}
+        }}
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header dengan Logo Asli PINTAR OS CLOUD -->
+        <!-- Header dengan Logo Asli PINTAR OS CLOUD Besar & Bersih -->
         <div class="header">
             <img src="{LOGO_URL}" alt="PINTAR OS CLOUD" class="logo-img">
-            <div class="subtitle">
-                Sistem otomasi manajemen konten video, integrasi cloud scheduler, dan sinkronisasi resmi Google YouTube Data API v3.
-            </div>
         </div>
 
-        <!-- Status Panel Futuristik -->
+        <!-- Status Panel Futuristik 3 Kolom Seimbang -->
         <div class="status-panel">
-            <!-- Live Dynamic Uptime (Tanpa Nominal) -->
+            <!-- Kolom 1: Live Dynamic Uptime -->
             <div class="status-item">
                 <span class="status-label">LIVE SYSTEM UPTIME</span>
                 <span class="status-val">
@@ -351,7 +365,7 @@ html_code = f"""
                 </span>
             </div>
             
-            <!-- Certified Integration dengan Logo Google & YouTube Asli -->
+            <!-- Kolom 2: Certified Integration -->
             <div class="status-item">
                 <span class="status-label">CERTIFIED API ARCHITECTURE</span>
                 <span class="status-val">
@@ -371,6 +385,17 @@ html_code = f"""
                             </svg>
                         </div>
                         <span>Google Cloud & YouTube API v3 Verified</span>
+                    </span>
+                </span>
+            </div>
+            
+            <!-- Kolom 3: Security Standard -->
+            <div class="status-item">
+                <span class="status-label">DATA SECURITY STANDARD</span>
+                <span class="status-val">
+                    <span class="security-badge">
+                        <span>🔒</span>
+                        <span>AES-256 Bit OAuth Encryption</span>
                     </span>
                 </span>
             </div>
@@ -489,8 +514,8 @@ html_code = f"""
 
         <!-- Footer -->
         <div class="footer">
-            <div>© 2026 <strong>{brand_name}</strong>. Powered by PINTAR OS Architecture.</div>
-            <div>Kontak Pengembang: <span style="color:#818cf8; font-weight:700;">contact.pintarmedia@gmail.com</span></div>
+            <div>© 2026 <strong>{brand_name}</strong>. Powered by PINTAR MEDIA.</div>
+            <div>Kontak Pengembang: <span style="color:#818cf8; font-weight:700;">pintarkantor@gmail.com</span></div>
         </div>
     </div>
 
@@ -507,7 +532,7 @@ html_code = f"""
             evt.currentTarget.classList.add('active');
         }}
 
-        // Dynamic Smart Uptime (Tanpa Nominal)
+        // Dynamic Smart Uptime
         function updateUptime() {{
             const uptimeEl = document.getElementById('live-uptime');
             if (uptimeEl) {{
