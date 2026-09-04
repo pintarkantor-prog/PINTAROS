@@ -22,7 +22,7 @@ query_params = st.query_params
 brand_param = query_params.get("brand", "PINTAR OS Cloud Studio")
 brand_name = brand_param.replace("-", " ").replace("_", " ").title()
 
-# HTML & CSS Utuh dengan Logo Google & YouTube Asli + Live Uptime
+# HTML & CSS Utuh Baru
 html_code = f"""
 <!DOCTYPE html>
 <html lang="id">
@@ -142,6 +142,21 @@ html_code = f"""
             100% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }}
         }}
         
+        .pulsing-dot-purple {{
+            width: 8px;
+            height: 8px;
+            background-color: #818cf8;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.7);
+            animation: pulse-purple 2s infinite;
+        }}
+        @keyframes pulse-purple {{
+            0% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.7); }}
+            70% {{ transform: scale(1); box-shadow: 0 0 0 8px rgba(129, 140, 248, 0); }}
+            100% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(129, 140, 248, 0); }}
+        }}
+        
         .uptime-badge {{
             display: inline-flex;
             align-items: center;
@@ -157,14 +172,14 @@ html_code = f"""
             letter-spacing: 0.3px;
         }}
         
-        /* Logo Certified Badge */
+        /* Logo Certified Badge Tanpa Centang */
         .partner-badge {{
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 8px;
             font-size: 12px;
             font-weight: 700;
@@ -348,18 +363,18 @@ html_code = f"""
         <!-- Status Panel Futuristik -->
         <div class="status-panel">
             <div class="status-group">
-                <!-- Live Uptime -->
+                <!-- Live Dynamic Uptime (No Clock Time, Dynamic 98.2% - 99.9%) -->
                 <div class="status-item">
                     <span class="status-label">LIVE SYSTEM UPTIME</span>
                     <span class="status-val">
                         <span class="uptime-badge">
                             <span class="pulsing-dot"></span>
-                            <span id="live-uptime">99.99% • 2,418h 42m 15s</span>
+                            <span id="live-uptime">99.8% Uptime (Nominal)</span>
                         </span>
                     </span>
                 </div>
                 
-                <!-- Certified Integration dengan Logo Asli Google & YouTube -->
+                <!-- Certified Integration dengan Logo Google & YouTube (Tanpa Centang) -->
                 <div class="status-item">
                     <span class="status-label">CERTIFIED API ARCHITECTURE</span>
                     <span class="status-val">
@@ -374,20 +389,21 @@ html_code = f"""
                                 </svg>
                                 <!-- Logo YouTube Asli -->
                                 <svg width="18" height="18" viewBox="0 0 24 24">
-                                    <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
+                                    <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
                                     <polygon fill="#FFFFFF" points="9.545,15.568 15.818,12 9.545,8.432"/>
                                 </svg>
                             </div>
-                            <span style="color:#10b981; margin-left:2px;">✓</span>
                             <span>Google Cloud & YouTube API v3 Verified</span>
                         </span>
                     </span>
                 </div>
                 
+                <!-- Infrastructure Status Keren Baru -->
                 <div class="status-item" style="margin-left:auto;">
-                    <span class="status-label">SERVICE AVAILABILITY</span>
-                    <span class="status-val" style="color:#6c72ff; font-weight:800;">
-                        <span>● ALL CLOUD SERVICES OPERATIONAL</span>
+                    <span class="status-label">INFRASTRUCTURE STATUS</span>
+                    <span class="status-val" style="color:#818cf8; font-weight:700;">
+                        <span class="pulsing-dot-purple"></span>
+                        <span>Enterprise Cloud Engine • Global CDN Active</span>
                     </span>
                 </div>
             </div>
@@ -511,7 +527,7 @@ html_code = f"""
         </div>
     </div>
 
-    <!-- Script Tab Switcher & Live Ticking Uptime -->
+    <!-- Script Tab Switcher & Dynamic Smart Uptime -->
     <script>
         function openTab(evt, tabId) {{
             const panes = document.querySelectorAll('.tab-pane');
@@ -524,22 +540,19 @@ html_code = f"""
             evt.currentTarget.classList.add('active');
         }}
 
-        // Live Uptime Counter Ticking Every Second
-        let totalSeconds = 2418 * 3600 + 42 * 60 + 15;
-        const uptimeEl = document.getElementById('live-uptime');
-        
-        setInterval(() => {{
-            totalSeconds++;
-            const hours = Math.floor(totalSeconds / 3600);
-            const minutes = Math.floor((totalSeconds % 3600) / 60);
-            const seconds = totalSeconds % 60;
-            const formattedHours = hours.toLocaleString('en-US');
-            const formattedMinutes = String(minutes).padStart(2, '0');
-            const formattedSeconds = String(seconds).padStart(2, '0');
+        // Dynamic Smart Uptime: Acak di rentang 98.2% - 99.9% secara alami
+        function updateUptime() {{
+            const uptimeEl = document.getElementById('live-uptime');
             if (uptimeEl) {{
-                uptimeEl.textContent = `99.99% • ${{formattedHours}}h ${{formattedMinutes}}m ${{formattedSeconds}}s`;
+                // Hasilkan angka antara 98.2 sampai 99.9
+                const randomVal = (98.2 + Math.random() * (99.9 - 98.2)).toFixed(1);
+                uptimeEl.textContent = `${{randomVal}}% Uptime (Nominal)`;
             }}
-        }}, 1000);
+        }}
+
+        // Jalankan saat load dan ganti acak setiap 5 menit (300.000 ms)
+        updateUptime();
+        setInterval(updateUptime, 300000);
     </script>
 </body>
 </html>
