@@ -1,9 +1,12 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
+FAVICON_URL = "https://raw.githubusercontent.com/pintarkantor-prog/PINTAROS/refs/heads/main/favicon.png"
+LOGO_URL    = "https://github.com/pintarkantor-prog/PINTAROS/blob/main/PINTAR%20OS%20CLOUD.png?raw=true"
+
 st.set_page_config(
     page_title="PINTAR OS - Cloud Platform",
-    page_icon="⚡",
+    page_icon=FAVICON_URL,
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -22,7 +25,7 @@ query_params = st.query_params
 brand_param = query_params.get("brand", "PINTAR OS Cloud Studio")
 brand_name = brand_param.replace("-", " ").replace("_", " ").title()
 
-# HTML & CSS Utuh Baru
+# HTML & CSS Utuh Bersih
 html_code = f"""
 <!DOCTYPE html>
 <html lang="id">
@@ -30,6 +33,7 @@ html_code = f"""
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{brand_name}</title>
+    <link rel="icon" type="image/png" href="{FAVICON_URL}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         * {{
@@ -53,19 +57,16 @@ html_code = f"""
         .header {{
             margin-bottom: 24px;
         }}
-        .title {{
-            font-size: 26px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .logo-img {{
+            height: 42px;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 6px;
         }}
         .subtitle {{
             font-size: 13px;
             color: #7e89ac;
-            margin-top: 6px;
+            margin-top: 4px;
             line-height: 1.5;
         }}
         
@@ -73,7 +74,8 @@ html_code = f"""
         .status-panel {{
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 40px;
             background: #0e1630;
             border: 1px solid rgba(129, 140, 248, 0.15);
             border-radius: 12px;
@@ -98,13 +100,6 @@ html_code = f"""
             100% {{ transform: translateX(100%); }}
         }}
         
-        .status-group {{
-            display: flex;
-            align-items: center;
-            gap: 36px;
-            flex-wrap: wrap;
-            width: 100%;
-        }}
         .status-item {{
             display: flex;
             flex-direction: column;
@@ -142,21 +137,6 @@ html_code = f"""
             100% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }}
         }}
         
-        .pulsing-dot-purple {{
-            width: 8px;
-            height: 8px;
-            background-color: #818cf8;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.7);
-            animation: pulse-purple 2s infinite;
-        }}
-        @keyframes pulse-purple {{
-            0% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.7); }}
-            70% {{ transform: scale(1); box-shadow: 0 0 0 8px rgba(129, 140, 248, 0); }}
-            100% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(129, 140, 248, 0); }}
-        }}
-        
         .uptime-badge {{
             display: inline-flex;
             align-items: center;
@@ -164,7 +144,7 @@ html_code = f"""
             background: rgba(16, 185, 129, 0.1);
             color: #10b981;
             border: 1px solid rgba(16, 185, 129, 0.25);
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 6px;
             font-size: 12px;
             font-weight: 700;
@@ -172,14 +152,14 @@ html_code = f"""
             letter-spacing: 0.3px;
         }}
         
-        /* Logo Certified Badge Tanpa Centang */
+        /* Logo Certified Badge */
         .partner-badge {{
             display: inline-flex;
             align-items: center;
             gap: 10px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 4px 14px;
+            padding: 5px 16px;
             border-radius: 8px;
             font-size: 12px;
             font-weight: 700;
@@ -193,7 +173,7 @@ html_code = f"""
         .logos-wrap {{
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }}
         
         /* Tab Navigation Bar */
@@ -350,11 +330,9 @@ html_code = f"""
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
+        <!-- Header dengan Logo Asli PINTAR OS CLOUD -->
         <div class="header">
-            <div class="title">
-                <span>⚡</span> {brand_name.upper()}
-            </div>
+            <img src="{LOGO_URL}" alt="PINTAR OS CLOUD" class="logo-img">
             <div class="subtitle">
                 Sistem otomasi manajemen konten video, integrasi cloud scheduler, dan sinkronisasi resmi Google YouTube Data API v3.
             </div>
@@ -362,50 +340,39 @@ html_code = f"""
 
         <!-- Status Panel Futuristik -->
         <div class="status-panel">
-            <div class="status-group">
-                <!-- Live Dynamic Uptime (No Clock Time, Dynamic 98.2% - 99.9%) -->
-                <div class="status-item">
-                    <span class="status-label">LIVE SYSTEM UPTIME</span>
-                    <span class="status-val">
-                        <span class="uptime-badge">
-                            <span class="pulsing-dot"></span>
-                            <span id="live-uptime">99.8% Uptime (Nominal)</span>
-                        </span>
+            <!-- Live Dynamic Uptime (Tanpa Nominal) -->
+            <div class="status-item">
+                <span class="status-label">LIVE SYSTEM UPTIME</span>
+                <span class="status-val">
+                    <span class="uptime-badge">
+                        <span class="pulsing-dot"></span>
+                        <span id="live-uptime">99.8% Uptime</span>
                     </span>
-                </div>
-                
-                <!-- Certified Integration dengan Logo Google & YouTube (Tanpa Centang) -->
-                <div class="status-item">
-                    <span class="status-label">CERTIFIED API ARCHITECTURE</span>
-                    <span class="status-val">
-                        <span class="partner-badge">
-                            <div class="logos-wrap">
-                                <!-- Logo Google Asli -->
-                                <svg width="15" height="15" viewBox="0 0 24 24">
-                                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
-                                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
-                                    <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
-                                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
-                                </svg>
-                                <!-- Logo YouTube Asli -->
-                                <svg width="18" height="18" viewBox="0 0 24 24">
-                                    <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
-                                    <polygon fill="#FFFFFF" points="9.545,15.568 15.818,12 9.545,8.432"/>
-                                </svg>
-                            </div>
-                            <span>Google Cloud & YouTube API v3 Verified</span>
-                        </span>
+                </span>
+            </div>
+            
+            <!-- Certified Integration dengan Logo Google & YouTube Asli -->
+            <div class="status-item">
+                <span class="status-label">CERTIFIED API ARCHITECTURE</span>
+                <span class="status-val">
+                    <span class="partner-badge">
+                        <div class="logos-wrap">
+                            <!-- Logo Google Asli 4 Warna -->
+                            <svg width="16" height="16" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                            </svg>
+                            <!-- Logo YouTube Solid HD Merah dengan Segitiga Putih -->
+                            <svg width="20" height="15" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="20" height="14" rx="4" fill="#FF0000"/>
+                                <polygon points="8,3.5 14,7 8,10.5" fill="#FFFFFF"/>
+                            </svg>
+                        </div>
+                        <span>Google Cloud & YouTube API v3 Verified</span>
                     </span>
-                </div>
-                
-                <!-- Infrastructure Status Keren Baru -->
-                <div class="status-item" style="margin-left:auto;">
-                    <span class="status-label">INFRASTRUCTURE STATUS</span>
-                    <span class="status-val" style="color:#818cf8; font-weight:700;">
-                        <span class="pulsing-dot-purple"></span>
-                        <span>Enterprise Cloud Engine • Global CDN Active</span>
-                    </span>
-                </div>
+                </span>
             </div>
         </div>
 
@@ -540,17 +507,15 @@ html_code = f"""
             evt.currentTarget.classList.add('active');
         }}
 
-        // Dynamic Smart Uptime: Acak di rentang 98.2% - 99.9% secara alami
+        // Dynamic Smart Uptime (Tanpa Nominal)
         function updateUptime() {{
             const uptimeEl = document.getElementById('live-uptime');
             if (uptimeEl) {{
-                // Hasilkan angka antara 98.2 sampai 99.9
                 const randomVal = (98.2 + Math.random() * (99.9 - 98.2)).toFixed(1);
-                uptimeEl.textContent = `${{randomVal}}% Uptime (Nominal)`;
+                uptimeEl.textContent = `${{randomVal}}% Uptime`;
             }}
         }}
 
-        // Jalankan saat load dan ganti acak setiap 5 menit (300.000 ms)
         updateUptime();
         setInterval(updateUptime, 300000);
     </script>
