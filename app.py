@@ -45,7 +45,7 @@ html_code = f"""
         body {{
             background-color: #090d16;
             color: #c8cdd5;
-            padding: 30px 40px;
+            padding: 24px 40px;
             min-height: 100vh;
         }}
         .container {{
@@ -53,14 +53,14 @@ html_code = f"""
             margin: 0 auto;
         }}
         
-        /* Header Logo Besar */
+        /* Header Logo Besar & Rapat */
         .header {{
-            margin-bottom: 24px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
         }}
         .logo-img {{
-            height: 64px;
+            height: 80px;
             object-fit: contain;
             display: block;
         }}
@@ -347,7 +347,7 @@ html_code = f"""
 </head>
 <body>
     <div class="container">
-        <!-- Header dengan Logo Asli PINTAR OS CLOUD Besar & Bersih -->
+        <!-- Header dengan Logo Asli PINTAR OS CLOUD Lebih Besar & Rapat -->
         <div class="header">
             <img src="{LOGO_URL}" alt="PINTAR OS CLOUD" class="logo-img">
         </div>
