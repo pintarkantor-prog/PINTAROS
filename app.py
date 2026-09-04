@@ -22,7 +22,7 @@ query_params = st.query_params
 brand_param = query_params.get("brand", "PINTAR OS Cloud Studio")
 brand_name = brand_param.replace("-", " ").replace("_", " ").title()
 
-# HTML & CSS Utuh dengan Efek Live Uptime Ticking
+# HTML & CSS Utuh dengan Logo Google & YouTube Asli + Live Uptime
 html_code = f"""
 <!DOCTYPE html>
 <html lang="id">
@@ -155,6 +155,30 @@ html_code = f"""
             font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
             letter-spacing: 0.3px;
+        }}
+        
+        /* Logo Certified Badge */
+        .partner-badge {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }}
+        .partner-badge:hover {{
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(129, 140, 248, 0.4);
+        }}
+        .logos-wrap {{
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }}
         
         /* Tab Navigation Bar */
@@ -324,7 +348,7 @@ html_code = f"""
         <!-- Status Panel Futuristik -->
         <div class="status-panel">
             <div class="status-group">
-                <!-- Live Uptime dengan efek Pulsing Dot & Clock Ticking -->
+                <!-- Live Uptime -->
                 <div class="status-item">
                     <span class="status-label">LIVE SYSTEM UPTIME</span>
                     <span class="status-val">
@@ -335,17 +359,28 @@ html_code = f"""
                     </span>
                 </div>
                 
+                <!-- Certified Integration dengan Logo Asli Google & YouTube -->
                 <div class="status-item">
-                    <span class="status-label">OAUTH PROTOCOL</span>
-                    <span class="status-val" style="color:#c8cdd5;">
-                        <span style="color:#818cf8; font-weight:700;">🔒 256-Bit Encrypted</span>
-                    </span>
-                </div>
-                
-                <div class="status-item">
-                    <span class="status-label">API GATEWAY</span>
-                    <span class="status-val" style="color:#10b981;">
-                        <span>✓ Google YouTube v3 Certified</span>
+                    <span class="status-label">CERTIFIED API ARCHITECTURE</span>
+                    <span class="status-val">
+                        <span class="partner-badge">
+                            <div class="logos-wrap">
+                                <!-- Logo Google Asli -->
+                                <svg width="15" height="15" viewBox="0 0 24 24">
+                                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                                    <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                                </svg>
+                                <!-- Logo YouTube Asli -->
+                                <svg width="18" height="18" viewBox="0 0 24 24">
+                                    <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
+                                    <polygon fill="#FFFFFF" points="9.545,15.568 15.818,12 9.545,8.432"/>
+                                </svg>
+                            </div>
+                            <span style="color:#10b981; margin-left:2px;">✓</span>
+                            <span>Google Cloud & YouTube API v3 Verified</span>
+                        </span>
                     </span>
                 </div>
                 
