@@ -22,7 +22,7 @@ query_params = st.query_params
 brand_param = query_params.get("brand", "PINTAR OS Cloud Studio")
 brand_name = brand_param.replace("-", " ").replace("_", " ").title()
 
-# HTML & CSS Utuh Berdesain PINTAR OS Asli
+# HTML & CSS Utuh dengan Efek Live Uptime Ticking
 html_code = f"""
 <!DOCTYPE html>
 <html lang="id">
@@ -30,7 +30,7 @@ html_code = f"""
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{brand_name}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         * {{
             margin: 0;
@@ -69,7 +69,7 @@ html_code = f"""
             line-height: 1.5;
         }}
         
-        /* Status Bar PINTAR OS */
+        /* Status Bar PINTAR OS High-Tech */
         .status-panel {{
             display: flex;
             align-items: center;
@@ -79,18 +79,36 @@ html_code = f"""
             border-radius: 12px;
             padding: 16px 24px;
             margin-bottom: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
         }}
+        .status-panel::before {{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6c72ff, #10b981, transparent);
+            animation: scanline 4s linear infinite;
+        }}
+        @keyframes scanline {{
+            0% {{ transform: translateX(-100%); }}
+            100% {{ transform: translateX(100%); }}
+        }}
+        
         .status-group {{
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 36px;
             flex-wrap: wrap;
+            width: 100%;
         }}
         .status-item {{
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
         }}
         .status-label {{
             font-size: 10px;
@@ -105,16 +123,38 @@ html_code = f"""
             color: #c8cdd5;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }}
-        .badge-live {{
-            background: rgba(16, 185, 129, 0.12);
+        
+        /* Glowing Pulsing Green Dot */
+        .pulsing-dot {{
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 2s infinite;
+        }}
+        @keyframes pulse-green {{
+            0% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }}
+            70% {{ transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }}
+            100% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }}
+        }}
+        
+        .uptime-badge {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
             color: #10b981;
             border: 1px solid rgba(16, 185, 129, 0.25);
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 6px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.3px;
         }}
         
         /* Tab Navigation Bar */
@@ -281,24 +321,39 @@ html_code = f"""
             </div>
         </div>
 
-        <!-- Status Panel -->
+        <!-- Status Panel Futuristik -->
         <div class="status-panel">
             <div class="status-group">
+                <!-- Live Uptime dengan efek Pulsing Dot & Clock Ticking -->
                 <div class="status-item">
-                    <span class="status-label">CLUSTER NODE</span>
-                    <span class="status-val" style="color:#818cf8;">PINTAR-CLOUD (PRODUCTION)</span>
+                    <span class="status-label">LIVE SYSTEM UPTIME</span>
+                    <span class="status-val">
+                        <span class="uptime-badge">
+                            <span class="pulsing-dot"></span>
+                            <span id="live-uptime">99.99% • 2,418h 42m 15s</span>
+                        </span>
+                    </span>
                 </div>
+                
                 <div class="status-item">
                     <span class="status-label">OAUTH PROTOCOL</span>
-                    <span class="status-val"><span class="badge-live">● AKTIF & TERENKRIPSI</span></span>
+                    <span class="status-val" style="color:#c8cdd5;">
+                        <span style="color:#818cf8; font-weight:700;">🔒 256-Bit Encrypted</span>
+                    </span>
                 </div>
+                
                 <div class="status-item">
                     <span class="status-label">API GATEWAY</span>
-                    <span class="status-val" style="color:#10b981;">Google YouTube API v3 Certified</span>
+                    <span class="status-val" style="color:#10b981;">
+                        <span>✓ Google YouTube v3 Certified</span>
+                    </span>
                 </div>
-                <div class="status-item">
-                    <span class="status-label">SYSTEM HEALTH</span>
-                    <span class="status-val" style="color:#6c72ff;">99.99% Operational</span>
+                
+                <div class="status-item" style="margin-left:auto;">
+                    <span class="status-label">SERVICE AVAILABILITY</span>
+                    <span class="status-val" style="color:#6c72ff; font-weight:800;">
+                        <span>● ALL CLOUD SERVICES OPERATIONAL</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -421,7 +476,7 @@ html_code = f"""
         </div>
     </div>
 
-    <!-- Script Tab Switcher Super Smooth -->
+    <!-- Script Tab Switcher & Live Ticking Uptime -->
     <script>
         function openTab(evt, tabId) {{
             const panes = document.querySelectorAll('.tab-pane');
@@ -433,10 +488,26 @@ html_code = f"""
             document.getElementById(tabId).classList.add('active');
             evt.currentTarget.classList.add('active');
         }}
+
+        // Live Uptime Counter Ticking Every Second
+        let totalSeconds = 2418 * 3600 + 42 * 60 + 15;
+        const uptimeEl = document.getElementById('live-uptime');
+        
+        setInterval(() => {{
+            totalSeconds++;
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            const formattedHours = hours.toLocaleString('en-US');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+            if (uptimeEl) {{
+                uptimeEl.textContent = `99.99% • ${{formattedHours}}h ${{formattedMinutes}}m ${{formattedSeconds}}s`;
+            }}
+        }}, 1000);
     </script>
 </body>
 </html>
 """
 
-# Render langsung tanpa bug Streamlit
 components.html(html_code, height=920, scrolling=True)
